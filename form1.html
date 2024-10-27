@@ -1,0 +1,43 @@
+<form id="myForm" class="p-2 border border-light rounded bg-light" onsubmit="handleFormSubmit(this)">
+    <div id="message"></div>
+    <input type="text" id="RecId" name="RecId" value="" style="display: none">
+    <div class="row">
+      <div class=" mb-2">
+        <label for="first" >First</label>
+        <input type="text" class="form-control" id="first" name="first" placeholder="First Name" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-2">
+        <label for="last" >Last</label>
+        <input type="text" class="form-control" id="last" name="last" placeholder="Last Name" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class=" mb-2">
+        <label for="age" >Age</label>
+        <input type="number" class="form-control" id="age" name="age" placeholder="age" required>
+      </div>
+    </div>
+    
+    <button type="submit" id="btn1" class="btn btn-primary">Save</button>
+    <!-- ##<input class="btn btn-secondary" type="reset" value="Reset"> -->
+    <button class="btn btn-primary" id="btn2" style="display:none" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </button>
+</form>
+
+<script>
+    function sendData() {
+      const first = document.getElementById('first').value;
+      const last = document.getElementById('last').value;
+      const age = document.getElementById('age').value;
+ 
+
+      google.script.run.withSuccessHandler(function(response) {
+          alert('Podaci su uspešno poslati!');
+          document.getElementById('dataForm').reset();
+      }).addData({ first, last, age });
+    }
+  </script>
