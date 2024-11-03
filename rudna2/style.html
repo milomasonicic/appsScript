@@ -1,0 +1,89 @@
+<style>
+
+   * {
+  box-sizing: border-box;
+  
+}
+
+body {
+  background-color: #fafaf9;
+}
+
+h3{
+  font-size: 45px;
+  
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 70%;
+  min-width: 280px;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #F16625;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #e8e8e8;
+  margin-left: 10px;
+  color: #F16625 ;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #F16625 ;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #bbbbbb;
+}
+
+//additional question, animacija itd
+.additional-question {
+ display: none;
+}
+
+//MEDIA QUERY
+@media (max-width: 650px) {
+  #regForm {
+    width: 95%;
+  }
+}
+
+</style>

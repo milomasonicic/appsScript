@@ -1,0 +1,866 @@
+<style>
+    /*hide za pitanja*/
+     .additional-question {
+       display: none; /* Skriva element */
+     }
+ 
+ </style>
+ 
+ <!--class="p-2 border border-light rounded bg-light"--->
+ <div>
+ <form id="regForm" action="" class="p-4 border border-light rounded-5" onsubmit="handleFormSubmit(this)">
+ 
+     <!--Opšta Pitanja Tab 1-->
+   <div class="tab">
+ 
+        <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+             Opšte info
+         </h3>
+         
+       </div> 
+ 
+         <!--pitanje 0-->
+         <div class="mt-1">
+                 <label for="ime_kompanije" class="form-label">1. Ime privrednog društva</label>
+                 <input type="text" class="form-control" id="ime_kompanije" name="ime_kompanije" value="" required>
+         </div>
+ 
+          <!-- pitanje 1-->
+         <div class="mb-3">
+               <label for="broj_zaposlenih" class="form-label">2. Broj zaposlenih</label>
+               <input type="number" class="form-control" id="broj_zaposlenih" name="broj_zaposlenih" required>
+         </div>
+ 
+          <!-- pitanje 2-->                    
+         <div class="mb-3">
+             <label for="tip_drustva" class="form-label">3. Molimo navedite da li je u pitanju privredno društvo:</label>
+             
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="tip_drustva1" name="tip_drustva" value="A" required>
+                     <label class="form-check-label" for="tip_drustva1"> Sa sjedištem u Crnoj Gori bez podružnica </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="tip_drustva2" name="tip_drustva" value="B">
+                     <label class="form-check-label" for="tip_drustva2"> Lokalna podružnica stranog privrednog društva </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="tip_drustva3" name="tip_drustva" value="C">
+                     <label class="form-check-label" for="tip_drustva3"> Društvo sa sjedištem u Crnoj Gori sa stranim podružnicama </label>
+                 </div>
+ 
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="tip_drustva4" name="tip_drustva" value="D">
+                     <label class="form-check-label" for="tip_drustva4"> Strano društvo koji posluje u Crnoj Gori bez podružnica </label>
+                 </div>
+         </div>
+ 
+         <div>
+           <!-- oninput="validateInput(this)  MORA SE VALIDIRIATI-->
+             <div class="mb-3">
+                 <label for="procenat_prihoda" class="form-label">4. Koji procenat ukupnog godišnjeg prihoda privrednog društva biste definisali kao prihod iz vašeg poslovanja u Crnoj Gori?</label>
+                 <input type="number" class="form-control" id="procenat_prihoda"  min="0" max="100" name="procenat_prihoda" placeholder="%" required>
+             </div>
+         </div>
+     
+   </div>
+ 
+     <!--INFO O ESG Tab 2-->
+   <div class="tab">
+        <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+              Informacije o ESG
+         </h3>
+       </div> 
+       <!-- pitanje 1 -->
+       <div class="mt-1 mb-3">
+         <label for="jasna_strategija" class="form-label">1. Da li privredno društvo ima jasnu strategiju koja se tiče održivog poslovanja ili objavljeno/javno saopštenje u vezi sa svojim obavezama u pogledu održivosti?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva1" name="jasna_strategija" value="Da" required>
+                 <label class="form-check-label" for="tip_drustva1"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="jasna_strategija" value="Ne">
+                 <label class="form-check-label" for="tip_drustva2"> Ne </label>
+             </div>
+             
+       </div>
+       <!-- pitanje 2 sekcija 2-->                    
+       <div class="mb-3">
+         <label for="imenovanje_sluzbenika" class="form-label">2. Da li je privredno društvo imenovalo službenike ili designiralo zasebnu jedinicu u organizaciji koja se bavi pitanjima održivosti poslovanja?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva1" name="imenovanje_sluzbenika" value="Da" required>
+                 <label class="form-check-label" for="tip_drustva1"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="imenovanje_sluzbenika" value="Ne">
+                 <label class="form-check-label" for="tip_drustva2"> Ne </label>
+             </div>
+             
+       </div>
+       <!-- pitanje 3 sekcija 2--> 
+       <div class="mb-3">
+         <label for="zivotna_sredina" class="form-label">3. Da li privredno društvo objavljuje bilo kakve informacije vezane za životnu sredinu, društvena ili pitanja vezana za upravljanje, osim konvencionalnih revidiranih finansijskih izvještaja?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva1" name="zivotna_sredina" value="Da" required>
+                 <label class="form-check-label" for="tip_drustva1"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="zivotna_sredina" value="Ne">
+                 <label class="form-check-label" for="tip_drustva"> Ne </label>
+             </div>
+             
+       </div>
+       <!-- pitanje 4 sekcija 2-->
+       <div class="mb-3">
+         <label for="esg_okvir" class="form-label">4. Da li je privredno društvo usvojilo bilo koje zvanično priznate ESG okvire, pokazatelje ili objave?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir1" name="esg_okvir" value="Da" required  onclick="automatizujPonasanje(this, 'esg_okvir_dodatak')">
+                 <label class="form-check-label" for="esg_okvir"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir2" name="esg_okvir" value="Ne"  
+                 onclick="automatizujPonasanje(this, 'esg_okvir_dodatak')">
+                 <label class="form-check-label" for="esg_okvir"> Ne </label>
+             </div>
+ 
+             <div id="esg_okvir_dodatak" class="additional-question" name="esg_okvir_dodatak">
+                 <label for="additional_input" class="form-label">Molimo navedite koji ESG okviri su usvojeni:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value=" " name="esg_okvir_dodatak" data-valid="false">
+                 </textarea>
+             </div>
+             
+       </div> 
+       <!-- pitanje 5 sekcija 2-->
+       <div class="mb-3">
+         <label for="procjena_rizika" class="form-label">
+           5. Da li je privredno društvo sprovelo procjenu rizika vezanih za ESG (osim procjena rizika koje se odnose na osnovnu djelatnost entiteta)?
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="procjena_rizika1" name="procjena_rizika" value="Da" required>
+                 <label class="form-check-label" for="procjena_rizika"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="procjena_rizika2" name="procjena_rizika" value="Ne">
+                 <label class="form-check-label" for="procjena_rizika"> Ne </label>
+             </div>                        
+       </div>     
+   </div>
+ 
+   <!--Rizici 3 Tab 3-->
+   <div class="tab">
+     <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+             Informacije o rizicima i opasnostima po okolinu
+         </h3>
+     </div>
+ 
+      <!-- pitanje 1 -->
+     <div class="mt-1 mb-3">
+         <label for="emisija_gasova" class="form-label">1.  Da li privredno društvo mjeri i izvještava o emisiji gasova staklene bašte?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="emisija_gasova1" name="emisija_gasova" value="Da" required>
+                 <label class="form-check-label" for="emisija_gasova"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="emisija_gasova" value="Ne">
+                 <label class="form-check-label" for="emisija_gasova"> Ne </label>
+             </div>
+             
+     </div> 
+ 
+     <!-- pitanje 2 -->
+     <div class="mb-3">
+         <label for="smanjenja_emisija" class="form-label">2. Da li je društvo izradilo jasnu strategiju smanjenja emisija CO2 u sljedećih 5-10 godina?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva1" name="smanjenja_emisija" value="Da" required>
+                 <label class="form-check-label" for="smanjenja_emisija"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="smanjenja_emisija" value="Ne">
+                 <label class="form-check-label" for="smanjenja_emisija"> Ne </label>
+             </div>
+             
+     </div>
+ 
+     <!-- pitanje 3 --> 
+     <div class="mb-3">
+             <label for="neusklađenost_sa_propisima" class="form-label">3. Da li je društvo u posljednje dvije godine podleglo obavezi plaćanja novčanih kazni radi neusklađenosti sa ekološkim propisima?</label>
+             
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="neusklađenost_sa_propisima_1" name="neusklađenost_sa_propisima" value="Da" 
+                     onclick="automatizujPonasanje(this, 'neusklađenost1')"
+                     required>
+                     <label class="form-check-label" for="esg_okvir"> Da </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="neusklađenost_sa_propisima2" name="neusklađenost_sa_propisima" value="Ne" 
+                     onclick="automatizujPonasanje(this, 'neusklađenost1')"
+                     >
+                     <label class="form-check-label" for="esg_okvir"> Ne </label>
+                 </div>
+     
+                 <div id="neusklađenost1" class="additional-question" name="neusklađenost_sa_propisima_dodatak">
+                     <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                     <textarea type="text" id="additional_input" class="form-control" value="" name="neusklađenost_sa_propisima_dodatak" data-valid="false"></textarea>
+                     <!--input type="text" id="additional_input" class="form-control" value="" name="neusklađenost_sa_propisima_dodatak" data-valid="false"-->
+                     
+                     
+                 </div>          
+     </div> 
+ 
+     <!--Pitenje 4-->
+     <div class="mb-3">
+     <label for="sudski_prekršajni_postupak" class="form-label">4. Da li se protiv društva vodi sudski/prekršajni postupak radi nepoštovanja zakona iz područja rizika zaštite životne sredine?</label>
+     
+         <div class="form-check">
+             <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_1" name="sudski_prekršajni_postupak" 
+             onclick="automatizujPonasanje(this, 'postupak1')"
+             value="Da" required>
+             <label class="form-check-label" for="sudski_prekršajni_postupak"> Da </label>
+         </div>
+         <div class="form-check">
+             <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_2" name="sudski_prekršajni_postupak" 
+             onclick="automatizujPonasanje(this, 'postupak1')"
+             value="Ne">
+             <label class="form-check-label" for="sudski_prekršajni_postupak"> Ne </label>
+         </div>
+ 
+         <div id="postupak1" class="additional-question" name="sudski_prekršajni_postupak_dodatak">
+             <label for="" class="form-label">Molimo Vas za više informacija:</label>
+             <textarea type="text" id="" class="form-control" value="" name="sudski_prekršajni_postupak_dodatak"
+             data-valid="false"> </textarea> 
+         </div>          
+     </div> 
+ 
+      <!--Pitenje 5-->
+     <div class="mb-3">
+         <label for="operacije_u_zaštićenim" class="form-label">5. Da li društvo obavlja bilo kakve operacije u zaštićenim ili osetljivim područjima?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_1" name="operacije_u_zaštićenim" value="Da" 
+                  onclick="automatizujPonasanje(this, 'operacije1')" 
+                 required>
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_2" name="operacije_u_zaštićenim" value="Ne"
+                  onclick="automatizujPonasanje(this, 'operacije1')"
+                 >
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Ne </label>
+             </div>
+ 
+             <div id="operacije1" class="additional-question" name="operacije_u_zaštićenim_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="operacije_u_zaštićenim_dodatak"
+                 data-valid="false"
+                 ></textarea>
+                 
+             </div>          
+     </div> 
+ 
+     <!--Pitenje 6-->
+     <div class="mb-3">
+         <label for="ekološke_katastrofe" class="form-label">6. Da li društvo ima važeće osiguranje od odgovornosti u vezi s ekološkim nesrećama/katastrofama?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva1" name="ekološke_katastrofe" value="Da">
+                 <label class="form-check-label" for="smanjenja_emisija"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="ekološke_katastrofe" value="Ne">
+                 <label class="form-check-label" for="smanjenja_emisija"> Ne </label>
+             </div>
+             
+     </div>
+ 
+     <!--Pitanje 7-->
+     <div class="mb-3">
+         <label for="operacije_u_zaštićenim" class="form-label">7. Da li društvo obavlja bilo kakve operacije u zaštićenim ili osetljivim područjima?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_1" name="operacije_u_zaštićenim" value="Da" 
+                 onclick="automatizujPonasanje(this, 'zastita1')"
+                 required>
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_2" name="operacije_u_zaštićenim" value="Ne"
+                 onclick="automatizujPonasanje(this, 'zastita1')"
+                 >
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Ne </label>
+             </div>
+ 
+             <div id="zastita1" class="additional-question" name="operacije_u_zaštićenim_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="operacije_u_zaštićenim_dodatak"
+                 data-valid="false"
+                 ></textarea>           
+             </div>          
+     </div> 
+ 
+     <!--Pitanje 8 --> 
+     <div class="mb-3">
+         <label for="katastrofa" class="form-label">8. 
+             Da li se očekuje da će društvo biti značajno pogođeno ekološkim katastrofama? (npr. poplave, jake oluje, porast nivoa mora, toplotni talasi, suše, itd.)
+         </label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="katastrofa" name="katastrofa" value="Da" 
+                  onclick="automatizujPonasanje(this, 'katastrofa1')"
+                 required>
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="katastrofa" name="katastrofa" value="Ne"
+                  onclick="automatizujPonasanje(this, 'katastrofa1')"
+                 >
+                 <label class="form-check-label" for="katastrofa"> Ne </label>
+             </div>
+ 
+             <div id="katastrofa1" class="additional-question" name="ekološka_dozvola_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="katastrofa" data-valid="false"></textarea>
+                 
+             </div>          
+     </div> 
+ 
+     <!--Pitanje 9 --> 
+     <div class="mb-3">
+         <label for="regulative" class="form-label">9. Da li društvo ima tim zadužen za regulative i usklađenost u vezi sa zdravljem i bezbjednošću?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="regulative" name="regulative" value="Da">
+                 <label class="form-check-label" for="regulative"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="regulative" name="regulative" value="Ne">
+                 <label class="form-check-label" for="regulative"> Ne </label>
+             </div>
+             
+     </div>
+ 
+    <!--Pitanje 10 -->  
+    <div class="mb-3">
+         <label for="ekološka_dozvola" class="form-label">10. 
+             Da li je društvu potrebna bilo kakva ekološka dozvola za obavljanje svoje poslovne aktivnosti?
+         </label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="ekološka_dozvola" name="ekološka_dozvola" value="Da" 
+                  onclick="automatizujPonasanje(this, 'ekološka_dozvola_1')"
+                 required>
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="" name="ekološka_dozvola" value="Ne"
+                  onclick="automatizujPonasanje(this, 'ekološka_dozvola_1')"
+                 >
+                 <label class="form-check-label" for="katastrofa"> Ne </label>
+             </div>
+ 
+             <div id="ekološka_dozvola_1" class="additional-question" name="ekološka_dozvola_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="ekološka_dozvola_dodatak" data-valid="false">
+                 </textarea>
+             </div>          
+    </div> 
+ 
+    <!--Pitanje 11 -->  
+    <div class="mb-3">
+         <label for="ISO_sertifikat" class="form-label">11. Da li društvo ima važeće ISO sertifikate ili je u procesu dobijanja istih?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_1" name="ISO_sertifikat" value="Da" 
+                 onclick="automatizujPonasanje(this, 'iso')"
+                 required>
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="sudski_prekršajni_postupak_2" name="ISO_sertifikat" value="Ne"
+                 onclick="automatizujPonasanje(this, 'iso')"
+                 >
+                 <label class="form-check-label" for="sudski_prekršajni_postupak"> Ne </label>
+             </div>
+ 
+             <div id="iso" class="additional-question" name="ISO_sertifikat_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value=" " name="ISO_sertifikat_dodatak"
+                 data-valid="false"
+                 ></textarea>
+                 
+             </div>          
+    </div>
+ 
+   
+ 
+ 
+   
+   
+   </div>
+ 
+   <!-- Struja Tab 4-->
+   <div class="tab">
+ 
+     <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+             Informacije u vezi sa električnom energijom
+         </h3>
+         
+       </div> 
+ 
+       <!-- Pitanje 1--->
+       <div class="mt-1 mb-3">
+         <label for="obnovljiva_energija" class="form-label">1. Da li privredno društvo generišete obnovljivu energiju? </label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio"  name="obnovljiva_energija" value="Da" required
+                  onclick="automatizujPonasanje(this, 'obnovljiva_energija1')"
+                 >
+                 <label class="form-check-label" for="tip_drustva1"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio"  name="obnovljiva_energija" value="Ne"
+                  onclick="automatizujPonasanje(this, 'obnovljiva_energija1')"
+                 >
+                 <label class="form-check-label" for="tip_drustva2"> Ne </label>
+             </div>
+ 
+             <div id="obnovljiva_energija1" class="additional-question" name="obnovljiva_energija_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za informaciju o izvoru i količini:</label>
+                 <textarea type="text" class="form-control" value="" name="obnovljiva_energija_dodatak">
+                 </textarea>
+             </div>
+             
+             
+       </div>
+ 
+       <!-- Pitanje 2--->
+       <div class="mb-3">
+             <label for="proizvodi_energiju" class="form-label">2. Da li kompanija direktno proizvodi obnovljivu energiju?</label>
+             
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="esg_okvir1" name="proizvodi_energiju" value="Da" required
+                     onclick="automatizujPonasanje(this, 'proizvodi_energiju')"
+                     >
+                     <label class="form-check-label" for="proizvodi_energiju"> Da </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="esg_okvir2" name="proizvodi_energiju" value="Ne"
+                     onclick="automatizujPonasanje(this, 'proizvodi_energiju')"
+                     >
+                     <label class="form-check-label" for="proizvodi_energiju"> Ne </label>
+                 </div>
+     
+                 <!-- if yes dropdown-->
+ 
+                 <div id="proizvodi_energiju" class="additional-question">
+                     <label for="proizvodi_energiju_dodatak">Ako privredno društvo proizvodi bilo kakvu obnovljivu energiju, da li je:</label>
+ 
+                         <select class="form-select custom-select-style" name="proizvodi_energiju_dodatak">
+                             <option value="" disabled selected>Izaberite opciju</option>
+                             <option value="A">Koristi samo za svoje poslovne operacije;</option>
+                             <option value="B">Prodaje dio ili cjelokupnu proizvodnju</option>
+                             <option value="C">Nije primjenjivo</option>
+                         </select>
+                 </div>
+                 
+       </div>
+ 
+       <!-- Pitanje 3--->
+       <div class="mb-3">
+             <label for="nabavka_energije" class="form-label">3. Da li privredno društvo kupuje obnovljivu energiju kao dio svojih nabavki električne energije?</label>
+             
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="esg_okvir1" name="nabavka_energije" value="Da" required
+                     onclick="automatizujPonasanje(this, 'nabavka_energije1')"
+                     >
+                     <label class="form-check-label" for="esg_okvir"> Da </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="esg_okvir2" name="nabavka_energije" value="Ne"
+                     onclick="automatizujPonasanje(this, 'nabavka_energije1')"
+                     >
+                     <label class="form-check-label" for="esg_okvir"> Ne </label>
+                 </div>
+     
+                 <!-- if yes dropdown-->
+                 <div id="nabavka_energije1" class="additional-question" name="nabavka_energije_dodatak">
+                     <label for="additional_input" class="form-label">Molimo Vas za informaciju o izvoru i količini:</label>
+                     <textarea type="text" id="additional_input" class="form-control" value="" name="nabavka_energije_dodatak">
+                     </textarea>
+                 </div>              
+       </div>
+ 
+       <!-- Pitanje 4--->
+       <div class="mb-3">
+                 <label for="iznos_potrošnje" class="form-label">4. Koliki je iznos ukupne godišnje potrošnje energije društva?</label>
+                 <input type="number" class="form-control" id="broj_zaposlenih" name="iznos_potrošnje" required>
+       </div>
+ 
+       <!-- Pitanje 5--->
+       <div class="mb-3">
+                 <label for="udio_obnovljivih_izvora" class="form-label">5. Koji je udio energije iz obnovljivih izvora u ukupnoj potrošnji energije (% kupljene i/ili % proizvedene)?</label>
+                 <input type="text" class="form-control" id="ime_kompanije" name="udio_obnovljivih_izvora" value="" required>
+       </div>
+ 
+ 
+ 
+   </div>
+ 
+   <!-- Otpad Tab 5-->
+   <div class="tab">
+     <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+             Informacije u vezi sa električnom energijom
+         </h3>
+         
+       </div>
+ 
+       <!--Pitanje 1 -->
+       <div class="mb-3">
+         <label for="proizvodnja_otpada" class="form-label">1. Da li društvo mjeri ukupnu proizvodnju otpada?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir1" name="proizvodnja_otpada" value="Da" required
+                 onclick="automatizujPonasanje(this, 'proizvodnja_otpada1')"
+                 >
+                 <label class="form-check-label" for="esg_okvir"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir2" name="proizvodnja_otpada" value="Ne"
+                 onclick="automatizujPonasanje(this, 'proizvodnja_otpada1')"
+                 >
+                 <label class="form-check-label" for="esg_okvir"> Ne </label>
+             </div>
+ 
+             <div id="proizvodnja_otpada1" class="additional-question" name="proizvodnja_otpada_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za informaciju procjeni, u tonama:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="esg_okvir_dodatak">
+                 </textarea>
+             </div>
+             
+        </div>
+ 
+       <!--Pitanje 2 -->
+       <div class="mb-3">
+         <label for="toksični_otpad" class="form-label">2. Da li društvo generiše opasni/toksični otpad u sklopu proizvodnih procesa?</label>
+         <p>*Opasnim otpadom se smatra otpad koji ima najmanje jednu od sljedećih karakteristika: zapaljivost, korozivnost, reaktivnost, toksičnost ili radioaktivnost.</p>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir1" name="toksični_otpad" value="Da" required
+                 onclick="automatizujPonasanje(this, 'toksični_otpad1')"
+                 >
+                 <label class="form-check-label" for="esg_okvir"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir2" name="toksični_otpad" value="Ne"
+                 onclick="automatizujPonasanje(this, 'toksični_otpad1')"
+                 >
+                 <label class="form-check-label" for="esg_okvir"> Ne </label>
+             </div>
+ 
+             <div id="toksični_otpad1" class="additional-question" name="toksični_otpad_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za informaciju procjeni, u tonama:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="toksični_otpad_dodatak">
+                 </textarea>
+             </div>
+             
+       </div>
+ 
+   </div>
+ 
+   <!-- Voda Tab 6-->
+   <div class="tab">
+     <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+             Informacije u vezi sa upravljanjem vodom
+         </h3>
+         
+     </div>
+ 
+       <!-- pITANJE 1 --->
+       <div class="mb-3">
+             <label for="dostupnost_vode" class="form-label">1. U kojoj mjeri opskrba i dostupnost vode utiču na otpornost poslovanja privrednog društva?</label>
+             
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="tip_drustva1" name="dostupnost_vode" value="nizak" required>
+                     <label class="form-check-label" for="tip_drustva1"> Nizak </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="dostupnost_vode" name="dostupnost_vode" value="umjeren">
+                     <label class="form-check-label" for="tip_drustva2"> Umjeren </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" id="dostupnost_vode" name="dostupnost_vode" value="visok">
+                     <label class="form-check-label" for="tip_drustva3"> Visok </label>
+                 </div>
+ 
+         </div>
+ 
+         <!-- pITANJE 2 -->
+       <div class="mb-3">
+         <label for="plan_za_smanjenje_vode" class="form-label">2. Da li društvo ima neka rješenja, investicije ili planirane ciljeve za smanjenje potrošnje vode?</label>
+         
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir1" name="plan_za_smanjenje_vode" value="Da" required
+                 onclick="automatizujPonasanje(this, 'smanjenje_vode1')"
+                 >
+                 <label class="form-check-label" for="plan_za_smanjenje_vode"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="esg_okvir2" name="plan_za_smanjenje_vode" value="Ne"
+                 onclick="automatizujPonasanje(this, 'smanjenje_vode1')"
+                 >
+                 <label class="form-check-label" for="plan_za_smanjenje_vode"> Ne </label>
+             </div>
+ 
+             <div id="smanjenje_vode1" class="additional-question" name="plan_za_smanjenje_vode_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za informaciju procjeni, u tonama:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="plan_za_smanjenje_vode_dodatak">
+                 </textarea>
+             </div>
+             
+        </div>
+ 
+   </div>
+ 
+    <!-- Zadnji Tab Ljudska prava 7-->
+   <div class="tab"> 
+     <div style="border-bottom: 3px #F16625 solid;">
+         <h3>
+             Informacije u vezi sa ljudskim pravima
+         </h3>
+         
+     </div>
+ 
+     <!-- pITANJE 1-->
+    <div class="mt-1 mb-3">
+         <label for="sankcije" class="form-label">1. Da li je društvo sankcionirano (novčanom kaznom ili drugim administrativnim mjerama) 
+             zbog nepoštivanja lokalnih propisa o zaštiti na radu i/ili zbog nesreće(a) na radu u posljednje dvije godine?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva1" name="sankcije" value="Da" required
+                 onclick="automatizujPonasanje(this, 'sankcije1')"
+                 >
+                 <label class="form-check-label" for="sankcije"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="sankcije" value="Ne"
+                 onclick="automatizujPonasanje(this, 'sankcije1')"
+                 >
+                 <label class="form-check-label" for="sankcije"> Ne </label>
+             </div>
+ 
+             <div id="sankcije1" class="additional-question" name="sankcije_dodatak">
+                 <label for="additional_input" class="form-label">Molimo Vas za više informacija:</label>
+                 <textarea type="text" id="additional_input" class="form-control" value="" name="sankcije_dodatak">
+                 </textarea>
+             </div>
+             
+    </div>
+ 
+    <!-- pITANJE 2-->
+    <div class="mb-3">
+         <label for="nesreća_na_radnom_mjestu" class="form-label">2. Da li društvo raspolaže internom procedurom i propisima za slučaj nesreće na radnom mjestu?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="nesreća_na_radnom_mjestu" name="nesreća_na_radnom_mjestu" value="Da" required>
+                 <label class="form-check-label" for="nesreća_na_radnom_mjestu"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="nesreća_na_radnom_mjestu" value="Ne">
+                 <label class="form-check-label" for="tip_drustva"> Ne </label>
+             </div>
+            
+    </div>
+ 
+    <!-- pITANJE 3-->
+   <div class="mb-3">
+         <label for="zapošljavanje_maloljetnih" class="form-label">3. Da li se društvo pridržava svih mjerodavnih zakonskih propisa ili međunarodnih radnopravnih normi o zapošljavanju maloljetnih osoba?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="nesreća_na_radnom_mjestu" name="zapošljavanje_maloljetnih" value="Da" required>
+                 <label class="form-check-label" for="nesreća_na_radnom_mjestu"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="tip_drustva2" name="zapošljavanje_maloljetnih" value="Ne">
+                 <label class="form-check-label" for="zapošljavanje_maloljetnih"> Ne </label>
+             </div>
+             
+   </div>
+ 
+   <!-- pITANJE 4-->
+   <div class="mb-3">
+         <label for="ljudska_prava" class="form-label">4. Ima li društvo politiku ljudskih prava?</label>
+         
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="nesreća_na_radnom_mjestu" name="ljudska_prava" value="Da" required>
+                 <label class="form-check-label" for="ljudska_prava"> Da </label>
+             </div>
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="" name="ljudska_prava" value="Ne">
+                 <label class="form-check-label" for="ljudska_prava"> Ne </label>
+             </div>
+             
+   </div>
+ 
+   <!-- pitanje 5 --->
+   <div class="mb-3">
+ 
+             <label for="procenat_polova" class="form-label">5. U najvišem upravljačkom tijelu društva, koji je procenat* muških, ako koji ženskih predstavnika?</label>
+         
+             <label for="maleInput">Muškarci (%):</label>
+             <input type="number" id="maleInput" min="0" max="100" oninput="updateFemalePercentage()" />
+             
+             <label for="femaleInput">Žene (%):</label>
+             <input type="number" id="femaleInput" min="0" max="100" oninput="updateMalePercentage()" />
+             
+   </div> 
+ 
+   <!-- pitanje 6--->
+   <div class="mb-3">
+             <label for="osobe_sa_invaliditetom" class="form-label">7. Da li društvo ima ustanovljene procedure za prilagođavanje zaposlenima sa invaliditetom?</label>
+ 
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="osobe_sa_invaliditetom" name="osobe_sa_invaliditetom" value="Da" required>
+                 <label class="form-check-label" for="osobe_sa_invaliditetom"> Da </label>
+             </div>
+ 
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="osobe_sa_invaliditetom" name="osobe_sa_invaliditetom" value="Ne">
+                 <label class="form-check-label" for="osobe_sa_invaliditetom"> Ne </label>
+             </div>
+   </div> 
+ 
+    <!-- pitanje 7--->
+   <div class="mb-3">
+             <label for="pristupačnost_invaliditet" class="form-label">8. Da li društvo ima procedure pristupačnosti za klijente i partnere sa invaliditetom u fizičkim prostorima kompanije? (rampe za kolica, određeno parking mesto, higijenske površine, itd...)</label>
+ 
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="pristupačnost_invaliditet" name="pristupačnost_invaliditet" value="Da" required>
+                 <label class="form-check-label" for="osobe_sa_invaliditetom"> Da </label>
+             </div>
+ 
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="pristupačnost_invaliditet" name="pristupačnost_invaliditet" value="Ne">
+                 <label class="form-check-label" for="osobe_sa_invaliditetom"> Ne </label>
+             </div>
+   </div> 
+ 
+    <!-- pitanje 9--->
+   <div class="mb-3">
+             <label for="dječiji_rad" class="form-label">9.  Da li društvo raspolaže saznanjima o kontroverzama u području dječijeg rada, prisilnog rada ili trgovine ljudima u svojoj djelatnosti ili lancu sadbijevanja?</label>
+ 
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="pristupačnost_invaliditet" name="dječiji_rad" value="Da" required>
+                 <label class="form-check-label" for="dječiji_rad"> Da </label>
+             </div>
+ 
+             <div class="form-check">
+                 <input class="form-check-input" type="radio" id="pristupačnost_invaliditet" name="dječiji_rad" value="Ne">
+                 <label class="form-check-label" for="dječiji_rad"> Ne </label>
+             </div>
+   </div> 
+ 
+   <!-- pitanje 10--->
+   
+ 
+     
+ 
+   </div>
+  
+  
+ 
+   
+ 
+ 
+  
+ 
+ 
+   <!-- dno od forme -->
+   <div style="overflow:auto;">
+     <!-- Dugmad -->
+       <div style="float:right;">
+         <button type="button" id="prevBtn" onclick="nextPrev(-1)">Nazad</button>
+         <button type="button" id="nextBtn" onclick="nextPrev(1)">Dalje</button>
+       </div>
+   </div>  
+ 
+   <!-- Progress bar: -->
+   <div style="text-align:center;margin-top:40px;">
+       <span class="step"></span>
+       <span class="step"></span>
+       <span class="step"></span>
+       <span class="step"></span>
+       <span class="step"></span>
+       <span class="step"></span>
+       <span class="step"></span>
+   </div>
+ 
+ 
+ 
+    
+  
+ 
+ </form>
+ 
+ </div>
+ 
+ <script>
+   //additional pitanje koje se pojavljuje na da i ne
+    function automatizujPonasanje(selectedRadio, additionalQuestionId) {
+       const additionalQuestion = document.getElementById(additionalQuestionId);
+ 
+       // Ako je odabrano "Da", prikaži dodatno pitanje
+       if (selectedRadio.value === "Da") {
+         console.log(selectedRadio.value)
+         additionalQuestion.classList.remove('additional-question'); // Prikazuje dodatno pitanje
+       } else {
+         additionalQuestion.classList.add('additional-question'); // Sakriva dodatno pitanje
+       console.log("klik", selectedRadio.value)
+       inputField.required = false;  // Skida obaveznost polja
+      inputField.value = ""; // Resetuje vrednost ako je ranije bila popunjena
+       }
+ 
+     } 
+ 
+   //male female procenti
+   function updateFemalePercentage() {
+             const maleInput = document.getElementById('maleInput');
+             const femaleInput = document.getElementById('femaleInput');
+ 
+             // Osiguraj da zbir ne prelazi 100%
+             const malePercentage = Math.max(0, Math.min(100, parseInt(maleInput.value) || 0));
+             const femalePercentage = 100 - malePercentage;
+ 
+             femaleInput.value = femalePercentage;
+         }
+ 
+   function updateMalePercentage() {
+             const maleInput = document.getElementById('maleInput');
+             const femaleInput = document.getElementById('femaleInput');
+ 
+             // Osiguraj da zbir ne prelazi 100%
+             const femalePercentage = Math.max(0, Math.min(100, parseInt(femaleInput.value) || 0));
+             const malePercentage = 100 - femalePercentage;
+ 
+             maleInput.value = malePercentage;
+         }   
+ 
+ 
+ </script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
