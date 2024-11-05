@@ -1,0 +1,104 @@
+VJEROVATNO DOBRA!!!
+
+
+
+function validateLastTab() {
+    var x, y, i, valid = true;
+    x = document.getElementsByClassName("tab");
+    y = x[x.length - 1].getElementsByTagName("input"); // Uzimamo sve inpute u poslednjem tabu
+    var firstInvalidElement = null;
+
+    // Prolazi kroz svako polje u poslednjem tabu
+    for (i = 0; i < y.length; i++) {
+        if (y[i].type === "radio") {
+            var name = y[i].name;
+            var isChecked = false;
+
+            for (var j = 0; j < y.length; j++) {
+                if (y[j].name === name && y[j].checked) {
+                    isChecked = true;
+                    break;
+                }
+            }
+
+            if (!isChecked) {
+                y[i].className += " invalid";
+                valid = false;
+                if (!firstInvalidElement) firstInvalidElement = y[i];
+            }
+        } else if (y[i].type === "number") {
+            if (y[i].value === "" || y[i].value <= 0) {
+                y[i].className += " invalid";
+                valid = false;
+                if (!firstInvalidElement) firstInvalidElement = y[i];
+            }
+        }
+    }
+
+    // Proverava sve dodatne textarea polja unutar poslednjeg taba
+    var additionalTextareas = document.querySelectorAll('.additional-question textarea');
+    additionalTextareas.forEach(function (textarea) {
+        if (textarea.parentElement.style.display === "block" && textarea.value.trim() === "") {
+            textarea.className += " invalid";
+            valid = false;
+            if (!firstInvalidElement) firstInvalidElement = textarea;
+        }
+    });
+
+    if (!valid && firstInvalidElement) {
+        firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    if (valid) {
+        document.getElementsByClassName("step")[x.length - 1].className += " finish"; // Oznaka za završeni tab
+    }
+    return valid;
+}
+
+
+
+
+
+
+SHOW TAB
+
+function showTab(n) {
+    // Ova funkcija će prikazati određeni tab forme...
+    var x = document.getElementsByClassName("tab");
+    x[n].style.display = "block";
+
+    // Ako ste na poslednjem tabu, promenite dugme "Dalje" u "Pošalji"
+    if (n == (x.length - 1)) {
+        /*document.getElementById("nextBtn").innerHTML = "Pošalji";
+        nextBtn.setAttribute("type", "submit"); // Promeni tip na submit
+        nextBtn.onclick = function() {
+            // Pozovite handler za slanje forme pre nego što pređete na sledeći korak
+            handleFormSubmit(document.getElementById("regForm"));
+        };
+               // Postavi onclick za dugme samo ako je validacija uspešna
+       document.getElementById("nextBtn").onclick = function() {
+            if (validateLastTab()) {
+                console.log("sad je dobro")
+                //handleFormSubmit(document.getElementById("regForm"));
+            }
+        };
+        
+        */
+        document.getElementById("nextBtn").innerHTML = "Pošalji";
+        
+       
+          document.getElementById("nextBtn").onclick = function() {
+            if (validateLastTab()) {  // Sada poziva validateLastTab samo na poslednjem tabu
+                console.log("sad je sve OK");  // Logovanje uspešne validacije
+                handleFormSubmit(document.getElementById("regForm"));
+            } else {
+                console.log("Polja na poslednjem tabu nisu validirana.");
+            }
+        };
+    } else {
+        document.getElementById("nextBtn").innerHTML = "Dalje";
+    }
+
+    //... i pokrenite funkciju koja će prikazati odgovarajući indikator koraka:
+    fixStepIndicator(n);
+}
