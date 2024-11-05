@@ -1,0 +1,75 @@
+function validateLastTab() {
+    var tabs = document.getElementsByClassName("tab");
+    var lastTab = tabs[tabs.length - 1];
+    var inputs = lastTab.querySelectorAll("input, textarea");
+    var valid = true;
+    var firstInvalidElement = null;
+
+    // Set za praćenje imena radio dugmadi koje su proverene
+    var checkedRadios = new Set(); 
+
+    // Prolazi kroz sva polja u poslednjem tabu
+    for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+
+        // Proveri inpute tipa number
+        if (input.type === "number") {
+            if (input.value === "" || input.value <= 0) {
+                input.classList.add("invalid");
+                valid = false;
+                if (!firstInvalidElement) firstInvalidElement = input;
+            } else {
+                input.classList.remove("invalid");
+            }
+        }
+
+        // Proveri radio dugmad
+        if (input.type === "radio") {
+            var name = input.name;
+
+            if (!checkedRadios.has(name)) {
+                var radioGroup = lastTab.querySelectorAll(`input[name="${name}"]`);
+                var isChecked = Array.from(radioGroup).some(radio => radio.checked);
+
+                if (!isChecked) {
+                    radioGroup[0].classList.add("invalid");
+                    valid = false;
+                    if (!firstInvalidElement) firstInvalidElement = radioGroup[0];
+                } else {
+                    radioGroup.forEach(radio => radio.classList.remove("invalid"));
+                }
+
+                checkedRadios.add(name);
+            }
+        }
+    }
+
+    // Validacija dodatnih textarea
+    var sankcijeRadios = lastTab.querySelectorAll('input[name="sankcije"]');
+    var isSankcijeYesChecked = Array.from(sankcijeRadios).some(radio => radio.checked && radio.value === "Da");
+
+    if (isSankcijeYesChecked) {
+        var additionalTextareas = lastTab.querySelectorAll('.additional-question textarea');
+        additionalTextareas.forEach(function (textarea) {
+            if (textarea.value.trim() === "") {
+                textarea.classList.add("invalid");
+                valid = false;
+                if (!firstInvalidElement) firstInvalidElement = textarea;
+            } else {
+                textarea.classList.remove("invalid");
+            }
+        });
+    }
+
+    // Ako neko polje nije validno, ispiši poruku u konzoli
+    if (!valid) {
+        console.log("Polja na poslednjem tabu nisu validirana.");
+        if (firstInvalidElement) {
+            firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    } else {
+        console.log("Sva polja na poslednjem tabu su validna.");
+    }
+
+    return valid;
+}
