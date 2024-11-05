@@ -1,0 +1,93 @@
+JAVA SCRIPT + VALIDATE LAST TAB
+
+function showTab(n) {
+    // Ova funkcija će prikazati određeni tab forme...
+    var x = document.getElementsByClassName("tab");
+    x[n].style.display = "block";
+
+    // Ako ste na poslednjem tabu, promenite dugme "Dalje" u "Pošalji"
+    if (n == (x.length - 1)) {
+        /*document.getElementById("nextBtn").innerHTML = "Pošalji";
+        nextBtn.setAttribute("type", "submit"); // Promeni tip na submit
+        nextBtn.onclick = function() {
+            // Pozovite handler za slanje forme pre nego što pređete na sledeći korak
+            handleFormSubmit(document.getElementById("regForm"));
+        };
+               // Postavi onclick za dugme samo ako je validacija uspešna
+       document.getElementById("nextBtn").onclick = function() {
+            if (validateLastTab()) {
+                console.log("sad je dobro")
+                //handleFormSubmit(document.getElementById("regForm"));
+            }
+        };
+        
+        */
+        document.getElementById("nextBtn").innerHTML = "Pošalji";
+        
+       
+          document.getElementById("nextBtn").onclick = function() {
+            if (validateLastTab()) {  // Sada poziva validateLastTab samo na poslednjem tabu
+                console.log("sad je sve OK");  // Logovanje uspešne validacije
+                handleFormSubmit(document.getElementById("regForm"));
+            } else {
+                console.log("Polja na poslednjem tabu nisu validirana.");
+            }
+        };
+    } else {
+        document.getElementById("nextBtn").innerHTML = "Dalje";
+    }
+
+    //... i pokrenite funkciju koja će prikazati odgovarajući indikator koraka:
+    fixStepIndicator(n);
+}
+
+
+
+
+
+VALIDATE LAST TAB 
+
+function validateLastTab() {
+    // Pronađi poslednji tab
+    var tabs = document.getElementsByClassName("tab");
+    var lastTab = tabs[tabs.length - 1];
+    var inputs = lastTab.querySelectorAll("input, textarea"); // Pronađi sva input i textarea polja
+    var valid = true;
+
+    // Prolazi kroz sva polja u poslednjem tabu
+    for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+
+        // Proveri polja tipa "text", "number", i "textarea"
+        if ((input.type === "text" && input.value.trim() === "") || 
+            (input.type === "number" && (input.value === "" || input.value <= 0)) ||
+            (input.tagName === "TEXTAREA" && input.value.trim() === "")) {
+            input.classList.add("invalid");  // Dodaj crvenu klasu
+            valid = false;
+        } else {
+            input.classList.remove("invalid");  // Ukloni crvenu klasu ako je polje ispunjeno
+        }
+    }
+
+    // Provera radio dugmadi - grupišemo ih po "name" atributu
+    var radioGroups = Array.from(new Set(Array.from(inputs).filter(el => el.type === "radio").map(el => el.name)));
+
+    for (let name of radioGroups) {
+        let radioGroup = Array.from(lastTab.querySelectorAll(`input[name="${name}"]`));
+        if (!radioGroup.some(radio => radio.checked)) {
+            // Ako nijedno radio dugme u grupi nije čekirano, dodaj invalid klasu na sve elemente te grupe
+            radioGroup.forEach(radio => radio.classList.add("invalid"));
+            valid = false;
+        } else {
+            // Ako je jedno od radio dugmadi čekirano, ukloni invalid klasu sa svih u toj grupi
+            radioGroup.forEach(radio => radio.classList.remove("invalid"));
+        }
+    }
+
+    // Ako neko polje nije validno, ispiši poruku u konzoli
+    if (!valid) {
+        console.log("Polja na poslednjem tabu nisu validirana.");
+    }
+
+    return valid;
+}
