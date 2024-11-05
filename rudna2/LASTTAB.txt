@@ -1,0 +1,79 @@
+
+AUTOMATIAZATION
+
+function automatizujPonasanje(radioBtn, additionalInputId) {
+    var dodatakPolje = document.getElementById(additionalInputId);
+    var textarea = dodatakPolje.querySelector('textarea');
+
+    if (radioBtn.value === "Da") {
+        // Prikazuje dodatno polje i postavlja textarea kao obaveznu
+        dodatakPolje.style.display = "block";
+        textarea.setAttribute("required", "true");
+        textarea.focus();
+    } else {
+        // Sakriva dodatno polje i uklanja obaveznost
+        dodatakPolje.style.display = "none";
+        textarea.removeAttribute("required");
+    }
+}
+
+
+
+VALIDATE LAST TAB 
+
+function validateLastTab() {
+    // Pronađi poslednji tab
+    var tabs = document.getElementsByClassName("tab");
+    var lastTab = tabs[tabs.length - 1];
+    var inputs = lastTab.querySelectorAll("input"); // Pronađi sva input polja (samo input)
+    var valid = true;
+
+    // Prolazi kroz sva polja u poslednjem tabu
+    inputs.forEach(input => {
+        // Proveri polja tipa "text", "number", i radio dugmadi
+        if ((input.type === "text" && input.value.trim() === "") || 
+            (input.type === "number" && (input.value === "" || input.value <= 0))) {
+            input.classList.add("invalid");  // Dodaj crvenu klasu
+            valid = false;
+        } else {
+            input.classList.remove("invalid");  // Ukloni crvenu klasu ako je polje ispunjeno
+        }
+    });
+
+    // Proveravanje radio dugmadi - grupišemo ih po "name" atributu
+    var radioGroups = Array.from(new Set(Array.from(inputs).filter(el => el.type === "radio").map(el => el.name)));
+
+    radioGroups.forEach(name => {
+        let radioGroup = Array.from(lastTab.querySelectorAll(`input[name="${name}"]`));
+        if (!radioGroup.some(radio => radio.checked)) {
+            // Ako nijedno radio dugme u grupi nije čekirano, dodaj invalid klasu na sve elemente te grupe
+            radioGroup.forEach(radio => radio.classList.add("invalid"));
+            valid = false;
+        } else {
+            // Ako je jedno od radio dugmadi čekirano, ukloni invalid klasu sa svih u toj grupi
+            radioGroup.forEach(radio => radio.classList.remove("invalid"));
+        }
+    });
+
+    // Proveri dodatne textarea polja unutar poslednjeg taba
+    var additionalTextareas = lastTab.querySelectorAll('.additional-question textarea');
+    additionalTextareas.forEach(textarea => {
+        if (textarea.parentElement.style.display === "block" && textarea.value.trim() === "") {
+            textarea.classList.add("invalid");
+            valid = false;
+        } else {
+            textarea.classList.remove("invalid");
+        }
+    });
+
+    // Ako neko polje nije validno, ispiši poruku u konzoli
+    if (!valid) {
+        console.log("Polja na poslednjem tabu nisu validirana.");
+    } else {
+        console.log("Sva polja su validna!");
+    }
+
+    return valid;
+}
+
+

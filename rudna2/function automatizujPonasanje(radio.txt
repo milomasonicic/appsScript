@@ -1,0 +1,11 @@
+function automatizujPonasanje(radioBtn, additionalInputId) {
+        var dodatakPolje = document.getElementById(additionalInputId);
+        if (radioBtn.value === "Da") {
+            dodatakPolje.style.display = "block";
+            dodatakPolje.querySelector('textarea').setAttribute("required", "true");
+            dodatakPolje.querySelector('textarea').focus();
+        } else {
+            dodatakPolje.style.display = "none";
+            dodatakPolje.querySelector('textarea').removeAttribute("required");
+        }
+    }
